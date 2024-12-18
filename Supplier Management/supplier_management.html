@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueberry Factory Management System</title>
+    <link rel="stylesheet" href="../base.css">
+    <script src="../base.js" defer></script>
+    <script src="app.js" defer ></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Blueberry Factory Management System</div>
+        <ul class="nav-links">
+            <button><a href="../Supplier Management/supplier_management.html">Supplier Management</a></button>
+            <button><a href="../Product Categorization and Packaging/product_categorization_and_packaging.html">
+                Product Categorization and Packaging</a></button>
+            <button><a href="../Sales Management/sales_management.html">Sales Management</a></button>
+            <button><a href="../Financial Analysis/financial_analysis.html">Financial Analysis</a></button>
+            <button><a href="../Inventory Management/inventory_management.html">Inventory Management</a></button>
+            <button><a href="../Comprehensive Report Generation/comprehensive_report_generation.html">Comprehensive Report Generation</a></button>
+        </ul>
+    </nav>
+    <div class="layout">
+        <nav class="side-bar">
+            <ul class="side-bar-header">Supplier Management</ul>
+            <ul><button section = section-farmers-information>Farmers Information</button></ul>
+            <br>
+            <ul><button section = section-purchase-records>Purchase Records</button></ul>
+            <br>
+            <ul><button section = section-expense-calculation>Expense Calculation</button></ul>
+        </nav>
+        <main>
+            <section id="section-farmers-information" class="section">
+                <h2>Farmers Information</h2>
+                <div class="search-container">
+                    <input type="text" id="search-bar-farmers" class="search-bar"
+                    placeholder="Search farmers by name or location">
+                    <button id="search-button-farmers" class="general-button">Search</button>
+                    <button id="search-clear-button" class="general-button">Clear</button>
+                </div>
+                <table class="all-table">
+                    <thead>
+                        <tr>
+                            <th>Farmer ID</th>
+                            <th>Farmer Name</th>
+                            <th>Contact Details</th>
+                            <th>Location</th>
+                            <th>More Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="farmers-table-body">
+                    </tbody>
+                </table>
+                <button class="general-button" id="add-farmer-button">Add New Farmer</button>
+                <button class="general-button" id="export-button" onclick="exportToCSV()">Export as CSV</button>
+            </section>
+            <section id="section-add-new-farmer" class="section">
+                <h2>Add New Farmer</h2>
+                <form id="form-add-farmer" class="form-add">            
+                    <div class="form-group">
+                        <label for="farmer-id">Farmer ID:</label>
+                        <input type="number" id="farmer-id" placeholder="Enter farmer ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="farmer-name">Farmer Name:</label>
+                        <input type="text" id="farmer-name" placeholder="Enter farmer name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-details">Contact Details:</label>
+                        <input type="text" id="contact-details" placeholder="Enter contact number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="farmer-location">Farmer Location:</label>
+                        <input type="text" id="farmer-location" placeholder="Enter farmer location" required>
+                    </div>
+                    <button type="submit" id="add-button" class="general-button">Add Farmer</button>
+                </form>
+            </section>
+            <section id="section-update-farmer" class="section">
+                <h2>Update Farmer</h2>
+                <form id="form-update-farmer" class="form-add">
+                    <div class="form-group">
+                        <label for="update-farmer-id">Farmer ID:</label>
+                        <input type="number" id="update-farmer-id" placeholder="Enter farmer id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-farmer-name">Farmer Name:</label>
+                        <input type="text" id="update-farmer-name" placeholder="Enter farmer name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-contact-details">Contact Details:</label>
+                        <input type="text" id="update-contact-details" placeholder="Enter contact details" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="update-location">Location:</label>
+                        <input type="text" id="update-location" placeholder="Enter location" required>
+                    </div>
+                    <button type="submit" id="update-farmer-btn" class="general-button">Update Farmer</button>
+                </form>
+            </section> 
+            <section id="section-purchase-records" class="section">
+                <h2>Purchase Records</h2>
+                    <button id="sort-by-date-button" class="general-button">Sort by date</button>
+                    <button id="sort-by-farmer-button" class="general-button">Sort by farmer</button>
+                    <button id="sort-by-amount-button" class="general-button">Sort by amount</button>
+                    <button id="clear-purchase-table-button" class="general-button">Clear</button>
+                <table class="all-table">
+                    <thead>
+                        <tr>
+                            <th>Purchase ID</th>
+                            <th>Farmer ID</th>
+                            <th>Date of Purchase</th>
+                            <th>Quantity Purchased</th>
+                            <th>Price Per Kilogram</th>
+                            <th>Total Cost</th>
+                            <th>More Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="purchases-table-body">
+                    </tbody>
+                </table>
+                <button class="general-button" id="log-new-purchase-button">Log New Purchase</button>
+                <br>
+                <input type="text" id="farmer-id-summary" placeholder="Enter Farmer ID">
+                <button id="generate-farmer-summary" class="general-button">Generate Farmer Summary</button>
+                <br>
+                <input type="date" id="start-date-summary">
+                <input type="date" id="end-date-summary">
+                <button id="generate-time-period-summary" class="general-button">Generate Time Period Summary</button>
+                <div id="summary-output"></div>
+            </section>
+            <section id="section-log-new-purchase" class="section">
+                <h2>Log New Purchase</h2>
+                <form id="form-log-purchase" class="form-add"> 
+                    <div class="form-group">
+                        <label for="purchase-id">Purchase ID:</label>
+                        <input type="number" id="purchase-id" placeholder="Enter purchase ID" required>
+                    </div>           
+                    <div class="form-group">
+                        <label for="farmer-id">Farmer ID:</label>
+                        <select id="select-farmer-id" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date-of-purchase">Date of Purchase:</label>
+                        <input type="date" id="date-of-purchase" placeholder="Enter date of purchase" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity-purchased">Quantity Purchased(Kg):</label>
+                        <input type="number" id="quantity-purchased" placeholder="Enter quantity purchased(kg)" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="price-per-kilogram">Price Per Kilogram:</label>
+                        <input type="number" id="price-per-kilogram" step="0.01" placeholder="Enter price per kilogram" required>
+                    </div>
+                    <button type="submit" id="log-button" class="general-button">Log Purchase</button>
+                </form>
+            </section>
+            <section id="section-expense-calculation" class="section">
+                <h2>Expense Calculations</h2>
+                <input type="date" id="start-date-expense">
+                <input type="date" id="end-date-expense">
+                <button id="calculate-expenses" class="general-button">Calculate Expenses</button>
+                <div id="expense-output"></div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
