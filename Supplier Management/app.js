@@ -61,7 +61,6 @@ function addFarmerToTable(farmer, index) {
         // Update kısmını görünür yapma
         sectionUpdateFarmer.style.display = 'block';
 
-        //Yeni değerlerin alınması
         document.getElementById('update-farmer-id').value = selectedFarmer.id;
         document.getElementById('update-farmer-name').value = selectedFarmer.name;
         document.getElementById('update-contact-details').value = selectedFarmer.contactDetails;
