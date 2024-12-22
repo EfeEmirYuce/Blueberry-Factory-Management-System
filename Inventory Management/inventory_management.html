@@ -6,6 +6,7 @@
     <title>Blueberry Factory Management System</title>
     <link rel="stylesheet" href="../base.css">
     <script src="../base.js" defer></script>
+    <script src="app.js" defer></script>
 </head>
 <body>
     <nav class="navbar">
@@ -22,8 +23,8 @@
     </nav>
     <div class="layout">
         <nav class="side-bar">
-            <ul class="side-bar-header">Supplier Management</ul>
-            <ul><button section = section-all-farmers>All Farmers</button></ul>
+            <ul class="side-bar-header">Inventory Management</ul>
+            <ul><button section = section-inventory-monitor>Inventory Monitor</button></ul>
             <br>
             <ul><button section = section-add-new-farmer>Add New Farmer</button></ul>
             <ul><button section = section-purchase-records>Purchase Records</button></ul>
@@ -31,24 +32,20 @@
             <ul><button section = section-expense-calculation>Expense Calculation</button></ul>
         </nav>
         <main>
-            <section id="section-all-farmers" class="section">
-                <h2>All Lectures</h2>
-                <div class="search-container">
-                    <input type="text" id="search-bar-lecture" class="search-bar" placeholder="Search lectures by name or code">
-                    <button id="search-btn-lecture" class="search-btn">Search</button>
-                </div>
+            <section id="section-inventory-monitor" class="section">
+                <h2>Inventory Monitor</h2>
                 <table class="all-table">
                     <thead>
                         <tr>
-                            <th>Course Code</th>
-                            <th>Course Name</th>
-                            <th>Grading Scale</th>
-                            <th>Course Credit</th>
-                            <th>More Details</th>
-                            <th>More Actions</th>
+                            <th>Item ID</th>
+                            <th>Category</th>
+                            <th>Quantity Available(kg)</th>
+                            <th>Reorder Level</th>
+                            <th>Restock Date</th>
+                            <th>Storage Location</th>
                         </tr>
                     </thead>
-                    <tbody id="lectures-table-body">
+                    <tbody id="inventory-monitor-tablebody">
                     </tbody>
                 </table>
             </section>

@@ -39,3 +39,14 @@ if (!localStorage.getItem("blueberries")) {
 window.blueberries = parseInt(localStorage.getItem("blueberries"), 10);
 
 window.orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+if (!localStorage.getItem("inventory")) {
+    const predefinedInventory = [
+        { id: 1, category: "Fresh", quantityAvailable: window.blueberries/3, reorderLevel: "", restockDate: "", storageLocation: "İzmir"},
+        { id: 2, category: "Frozen", quantityAvailable: window.blueberries/3, reorderLevel: "", restockDate: "", storageLocation: "Muğla"},
+        { id: 3, category: "Organic", quantityAvailable: window.blueberries/3, reorderLevel: "", restockDate: "", storageLocation: "Aydın"},
+    ];
+
+    localStorage.setItem("inventory", JSON.stringify(predefinedInventory));
+};
+window.inventory = JSON.parse(localStorage.getItem("inventory"));

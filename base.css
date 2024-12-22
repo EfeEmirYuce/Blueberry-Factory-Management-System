@@ -1,9 +1,11 @@
 :root{
     --primary-color : #333;
-    --secondary-color : #636060;
+    --secondary-color : #705ba1;
     --active-color : #312455;
-    --light-active-color:#ddd;
+    --light-active-color:#ddc9fd;
     --text-color : #fff;
+    --navbar-color: #1f1c25;
+    --sidebar-color:#3d3544;
 }
 
 body {
@@ -15,7 +17,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary-color);
+    background-color: var(--navbar-color);
     padding: 0.5rem 1rem;
     color: var(--text-color);
     height: 100px;
@@ -58,9 +60,8 @@ body {
 }
 
 .side-bar {
-    background-color: var(--secondary-color);
+    background-color: var(--sidebar-color);
     width: 150px;
-    margin-top: 10px;
     padding-right: 80px;
     padding-top: 10px;
     border-right: 1px solid var(--text-color);
@@ -69,6 +70,7 @@ body {
 .side-bar-header{
     font-size: 1.5rem;
     font-weight: bold;
+    color:white;
 }
 
 .side-bar button {
