@@ -25,6 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function updateFarmerSelect(newFarmer){
+    const option = document.createElement('option');
+    option.value = newFarmer.id;
+    option.textContent = `${newFarmer.id} - ${newFarmer.name}`;
+    farmerSelect.appendChild(option);
+}
+
 //id lerin benzersizliği
 function isIdUnique(id, itemList) {
     return !itemList.some(item => item.id === id);
@@ -145,6 +152,7 @@ addFarmerButton.addEventListener("click", () => {
         const newFarmer = {id, name, contactDetails, location };
 
         addFarmer(newFarmer);
+        updateFarmerSelect(newFarmer);
         
         addFarmerForm.reset();
         sectionAddFarmer.style.display = "none";
@@ -231,6 +239,9 @@ logPurchaseButton.addEventListener("click", () => {
 
         addPurchase(newPurchase);
         
+        window.blueberries = window.blueberries + parseInt(newPurchase.quantityPurchased);
+        localStorage.setItem("blueberries", window.blueberries);
+
         logPurchaseForm.reset();
         sectionLogPurchase.style.display = "none";
     });

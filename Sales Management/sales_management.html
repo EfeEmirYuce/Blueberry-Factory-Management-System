@@ -6,6 +6,7 @@
     <title>Blueberry Factory Management System</title>
     <link rel="stylesheet" href="../base.css">
     <script src="../base.js" defer></script>
+    <script src="app.js" defer ></script>
 </head>
 <body>
     <nav class="navbar">
@@ -22,35 +23,107 @@
     </nav>
     <div class="layout">
         <nav class="side-bar">
-            <ul class="side-bar-header">Supplier Management</ul>
-            <ul><button section = section-all-farmers>All Farmers</button></ul>
-            <br>
-            <ul><button section = section-add-new-farmer>Add New Farmer</button></ul>
-            <ul><button section = section-purchase-records>Purchase Records</button></ul>
-            <br>
-            <ul><button section = section-expense-calculation>Expense Calculation</button></ul>
+            <ul class="side-bar-header">Sales Management</ul>
+            <ul><button section = section-order-management>Order Management</button></ul>
         </nav>
         <main>
-            <section id="section-all-farmers" class="section">
-                <h2>All Lectures</h2>
+            <section id="section-order-management" class="section">
+                <h2>Order Management</h2>
                 <div class="search-container">
-                    <input type="text" id="search-bar-lecture" class="search-bar" placeholder="Search lectures by name or code">
-                    <button id="search-btn-lecture" class="search-btn">Search</button>
+                    <input type="text" id="search-bar-order" class="search-bar" 
+                    placeholder="Search orders by status, customer name or product category">
+                    <button id="search-button-orders" class="general-button">Search</button>
+                    <button id="search-clear-button" class="general-button">Clear</button>
                 </div>
                 <table class="all-table">
                     <thead>
                         <tr>
-                            <th>Course Code</th>
-                            <th>Course Name</th>
-                            <th>Grading Scale</th>
-                            <th>Course Credit</th>
-                            <th>More Details</th>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Customer Contact Number</th>
+                            <th>Shipping Location</th>
+                            <th>Order Date</th>
+                            <th>Product Category</th>
+                            <th>Quantity Ordered</th>
+                            <th>Total Price($)</th>
+                            <th>Order Status</th>
                             <th>More Actions</th>
                         </tr>
                     </thead>
-                    <tbody id="lectures-table-body">
+                    <tbody id="orders-table-body">
                     </tbody>
                 </table>
+                <button class="general-button" id="add-order-button">Log New Order</button>
+            </section>
+            <section id="section-log-new-order" class="section">
+                <h2>Log New Order</h2>
+                <form id="form-log-order" class="form-add">            
+                    <div class="form-group">
+                        <label for="order-id">Order ID:</label>
+                        <input type="number" id="order-id" placeholder="Enter Order ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-name">Customer Name:</label>
+                        <input type="text" id="customer-name" placeholder="Enter customer name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-contact-number">Customer Contact Number:</label>
+                        <input type="number" id="customer-contact-number" placeholder="Enter customer contact number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping-location">Shipping Location:</label>
+                        <input type="text" id="shipping-location" placeholder="Enter shipping location" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="order-date">Order Date :</label>
+                        <input type="date" id="order-date" placeholder="Enter order date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="product-category">Product Category:</label>
+                        <select id="select-product-category" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity-ordered">Quantity Ordered:</label>
+                        <input type="number" id="quantity-ordered" placeholder="Enter quantity ordered" required>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <input type="radio" name="order-status" value="pending" required>Pending
+                        </label>
+                        <label>
+                            <input type="radio" name="order-status" value="processed" required>Processed
+                        </label>
+                        <label>
+                            <input type="radio" name="order-status" value="shipped" required>Shipped
+                        </label>
+                        <label>
+                            <input type="radio" name="order-status" value="delivered" required>Delivered
+                        </label>
+                    </div>
+                    <button type="submit" id="add-button" class="general-button">Log Order</button>
+                </form>
+            </section>
+            <section id="section-update-order-status" class="section">
+                <h2>Update Order Status</h2>
+                <form id="form-update-order-status" class="form-add">
+                    <div class="form-group">
+                        <div class="order-status">
+                            <label>
+                                <input type="radio" name="update-order-status" value="pending" required>pending
+                            </label>
+                            <label>
+                                <input type="radio" name="update-order-status" value="processed" required>processed
+                            </label>
+                            <label>
+                                <input type="radio" name="update-order-status" value="shipped" required>shipped
+                            </label>
+                            <label>
+                                <input type="radio" name="update-order-status" value="delivered" required>delivered
+                            </label>
+                        </div>    
+                    </div>
+                    <button type="submit" id="update-order-status" class="general-button">Update Order Status</button>
+                </form>
             </section>
         </main>
     </div>

@@ -96,6 +96,7 @@ function displayPricingStructure(category){
     `;
 }
 
+//stok kontrolü
 function restockAlert(stockLevel){
     if (stockLevel < 5){
         return "Stock level is critical low";
@@ -106,6 +107,7 @@ function restockAlert(stockLevel){
     }
 }
 
+//stok ekstra uyarı kontrolü
 function inventoryReport(stockLevel, marketDemand){
     if(stockLevel < 5 && marketDemand === "high"){
         return "This category has a high market demand but you are very low on stock."
@@ -132,6 +134,7 @@ function findCategoryByName(name){
     return selectedCategory;
 }
 
+//kategorileri tabloya ekleme
 function addInventoryToTable(category, index) {
     const row = document.createElement('tr');
 
@@ -149,12 +152,38 @@ function addInventoryToTable(category, index) {
 formPackage.addEventListener("submit", (event) =>{
     event.preventDefault();
     const categoryName = document.getElementById("category-dropdown").value;
-    const quantity = parseFloat(document.getElementById("quantity").value);
+    const quantity = parseInt(document.getElementById("quantity").value);
     selectedCategory = findCategoryByName(categoryName);
-    selectedCategory.stockLevel = selectedCategory.stockLevel + quantity;
-    window.blueberries = window.blueberries - selectedCategory.weight*quantity/1000;
+    newStockLevel = selectedCategory.stockLevel + quantity;
+
+    const updatedCategory = {
+        id:selectedCategory.id,
+        name:selectedCategory.name,
+        weight:selectedCategory.weight,
+        price:selectedCategory.price,
+        marketDemand:selectedCategory.marketDemand,
+        stockLevel: newStockLevel,
+        restockAlert:selectedCategory.restockAlert,
+    }
+
+    window.categories[findCategory(categoryName)] = updatedCategory;
+    localStorage.setItem("categories", JSON.stringify(window.categories));
+
+    window.blueberries = window.blueberries - parseInt(selectedCategory.weight*quantity/1000);
+    localStorage.setItem("blueberries", window.blueberries);
     
     inventoryTableBody.innerHTML = "";
 
     window.categories.forEach((category, index) => { addInventoryToTable(category,index)});
 });
+
+function findCategory(categoryName){
+    index = 0;
+    window.categories.forEach(category => {
+        if(category.name === categoryName){
+            index = window.categories.indexOf(category);
+            return;
+        }else{}
+    });
+    return index;
+}
