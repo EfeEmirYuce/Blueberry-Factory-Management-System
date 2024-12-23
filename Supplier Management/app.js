@@ -144,6 +144,14 @@ addFarmerButton.addEventListener("click", () => {
     
         // İnputları toplama
         const id = document.getElementById('farmer-id').value;
+
+        //ID kontrolü
+        if(!isIdUnique(id,window.farmers)){
+            const suggestedId = suggestUniqueId(window.farmers);
+            alert(`The ID that you entered is not unique. You can use this suggested ID: ${suggestedId}`);
+            return;
+        }
+
         const name = document.getElementById('farmer-name').value;
         const contactDetails = document.getElementById("contact-details").value;
         const location = document.getElementById('farmer-location').value;

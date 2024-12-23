@@ -11,3 +11,5 @@ Section 5:
 - Forecasting
 - Alerts
 - Reports
+
+input değerlere kurallar girilmeli
